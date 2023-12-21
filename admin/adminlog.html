@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login Form</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="css/adminlog.css" />
+  </head>
+  <body>
+    <form action="/LMS/admin/adphp/adminlog.php" method="POST">
+    <div class="login_form_container">
+
+      
+      <div class="login_form" >
+        <h2>Login as Admin</h2>
+        <div class="input_group">
+          <i class="fa fa-user"></i>
+          <input
+            type="text"
+            placeholder="email"
+            class="input_text"
+            autocomplete="off"
+            name="email"
+          />
+        </div>
+        <div class="input_group">
+          <i class="fa fa-unlock-alt"></i>
+          <input
+            type="password"
+            placeholder="Password"
+            class="input_text"
+            autocomplete="off"
+            name="password"
+          />
+        </div>
+        <div class="" id="login_button">
+         <button href="adminhome.html" class="button_group">Log In</button> 
+        </div>
+       
+      </div>
+    </div>
+  </form>
+
+    
+  
+  </body>
+</html>

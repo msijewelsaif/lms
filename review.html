@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Submission</title>
+    <link rel="stylesheet" href="css/review.css">
+    <style>
+       
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Testimonial Submission</h1>
+        </div>
+        <form class="testimonial-form" action="php/review.php" method="post">
+            <div class="form-group">
+                <label for="testimonialText">Testimonial</label>
+              
+                <input type="text" id="content" name="content">
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author" required maxlength="50" class="name">
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" class="btn-submit" value="Submit Testimonial">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

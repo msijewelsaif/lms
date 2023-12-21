@@ -1,0 +1,120 @@
+/* Reset some default styles */
+body, ul, li, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #0056b3;
+    color: #fff;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+main {
+    width: 75%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.features ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.course {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.course img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #0056b3;
+    color: #fff;
+}
+.cphoto{
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    display: block;
+}
+.btn{
+    color: white;
+    background-color: #0056b3;
+    height: 30px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.btn:hover{
+    background-color: black;
+}
+
+
+.dashmenu{
+    color: white;
+    font-size: 16px
+}
+.dashmenu:hover{
+    color: red;
+}

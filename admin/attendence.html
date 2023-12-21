@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #0074D9;
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #0074D9;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        button.print {
+            background-color: #4CAF50;
+        }
+
+        ol {
+            list-style-type: decimal;
+            text-align: left;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mark Attendance</h2>
+        <form action="submit.php" method="post">
+            <label for="studentName">Student Name:</label>
+            <input type="text" name="studentName" required>
+            <button type="submit">Mark Attendance</button>
+        </form>
+
+        <button onclick="printAttendance()">Print</button>
+        <ol id="attendanceList"></ol>
+        <button onclick="deleteAttendance()">Delete All Attendance</button>
+        <button onclick="updateAttendancePrompt()">Update Attendance</button>
+    </div>
+
+    <script>
+        function printAttendance() {
+            // Fetch and display attendance data from a text file sequentially.
+            fetch('attendance_log.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const attendanceList = document.getElementById('attendanceList');
+                    attendanceList.innerHTML = ''; // Clear existing data
+
+                    const lines = data.split('\n');
+                    lines.forEach((line, index) => {
+                        if (line.trim() !== '') {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${index + 1}. ${line}`;
+                            attendanceList.appendChild(listItem);
+                        }
+                    });
+
+                    window.print();
+                })
+                .catch(error => console.error('Error fetching attendance data:', error));
+        }
+
+        function deleteAttendance() {
+            // JavaScript function to delete all attendance data.
+            if (confirm("Are you sure you want to delete all attendance data?")) {
+                fetch('delete.php')
+                    .then(response => {
+                        if (response.ok) {
+                            alert('All attendance data has been deleted.');
+                            document.getElementById('attendanceList').innerHTML = ''; // Clear the displayed data
+                        } else {
+                            alert('Failed to delete attendance data.');
+                        }
+                    })
+                    .catch(error => console.error('Error deleting attendance data:', error));
+            }
+        }
+
+        function updateAttendancePrompt() {
+            const newName = prompt('Enter the student name you want to update:');
+            if (newName !== null) {
+                const updatedName = prompt('Enter the updated student name:');
+                if (updatedName !== null) {
+                    updateAttendance(newName, updatedName);
+                }
+            }
+        }
+
+        function updateAttendance(oldName, newName) {
+            // JavaScript function to update attendance data based on oldName and newName.
+            const data = { oldName, newName };
+            fetch('update.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Attendance data updated successfully.');
+                        // You can update the displayed list if needed.
+                    } else {
+                        alert('Failed to update attendance data.');
+                    }
+                })
+                .catch(error => console.error('Error updating attendance data:', error));
+        }
+    </script>
+</body>
+</html>

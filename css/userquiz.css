@@ -1,0 +1,80 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply basic styles to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the container */
+.container {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Style the header */
+h1 {
+    font-size: 28px;
+    margin: 20px 0;
+    color: #333;
+}
+
+/* Style form elements */
+.question {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333;
+    text-align: left;
+    width: 100%;
+}
+
+input[type="radio"] {
+    margin: 5px 0;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+label {
+    display: inline-block;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px 0;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}

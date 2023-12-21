@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
+
+
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(../img/logbg.gif) no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+
+
+
+.wrapper{
+    position: relative;
+    width: 420px;
+ /*   background-color: purple;*/
+    background-color: transparent;
+    border-radius: 10px;
+   /* color: azure; */
+   padding: 30px 40px;
+}
+.wrapper h1{
+    font: 35px;
+    text-align: center;
+    color: red;
+}
+.wrapper .input-box{
+    width: 100%;
+    height: 50px;
+
+    
+    margin: 30px 0;
+}
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background-attachment: transparent;
+    border: none;
+    outline: none;
+    border: 4px solid red;
+border-radius: 10px;
+font-size: 16;
+color: black;
+padding: 20px 45px 20px 20px;
+
+}
+
+.input-box::placeholder{
+    color:purple;
+}
+.icon{
+    position: relative;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: brown;
+}
+.wrapper .forgot-pass{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+    
+}
+
+.forgot-pass a{
+    color: black;
+    text-decoration: none;
+
+}
+.forgot-pass a:hover{
+    text-decoration: underline;
+    color: red;
+}
+.log-btn{
+
+    width: 100%;
+    height: 45px;
+    background-color: aliceblue;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba( 0,0,1,1);
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+    font-weight: 600;
+    border:  4px solid red;
+
+}
+
+.register-link{
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+    color: white;
+    font-weight: 600;
+
+}
+.register-link :hover{
+    color: bisque;
+}

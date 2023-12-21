@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Font awesome links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Custom css file -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header section starts -->
+    <header class="header">
+        <section class="flex">
+            <a href="home.php" method="post" class="logo">
+                <p class="hudai"><b class="l">Learning</b> <b class="k">Management</b> System</p>
+            </a>
+            <form action="" method="post" class="search-form">
+                <input type="text" name="search_box" placeholder="Search courses" required maxlength="50">
+                <button type="submit" class="fas fa-search" name="search_box"></button>
+            </form>
+            <div class="icon">
+                <div id="menu-btn" class="icon fas fa-bars"></div>
+                <div id="search-btn" class="fas fa-search"></div>
+                <!--<div id="user-btn" class="fas fa-user"></div> -->
+                <a href="log.html"><div id="sign_btn" class="fas fa-sign-in-alt"></div></a>
+                <a href="signup.html"><div id="reg_btn" class="fas fa-user-plus"></div></a>
+                <div id="toggle-btn" class="fas fa-sun"></div>
+            </div>
+        </section>
+        <section>
+            <div class="heros">
+                <img class="hero" src="img/signup2.gif" alt="">
+            </div>
+            <!-- Testimonials section starts -->
+            <section class="testimonials">
+                <!-- You can add PHP code for testimonials here if needed -->
+            </section>
+            <div class="container">
+                <h1>Welcome to Our Testimonials Page</h1>
+                <div class="testimonial-list">
+                    <?php include 'php/get_testimonials.php'; ?>
+                </div>
+            </div>
+            <!-- Testimonials section ends -->
+        </section>
+    </header>
+    <!-- Header section ends -->
+    <!-- Footer starts -->
+    <footer class="footer">
+        &copy; copyright @2023 by <span>Team loosers ,BDU-3rd batch</span> all right reserved!!
+        <div class="icon">
+            <div id="admin" class="fas fa-user-plus"><br>
+                <a href="admin/adminlog.html"><b>Admin Sign-Up</b></a></div>
+        </div>
+    </footer>
+    <!-- Footer ends -->
+    <!-- Custom JS file link -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

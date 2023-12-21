@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Management System</title>
+    <style>
+       /* Reset some default styles */
+body, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Style the container */
+.container {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style the heading */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #0074D9;
+}
+
+/* Style the form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style labels */
+label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Style input fields */
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+/* Style buttons */
+button {
+    background-color: #0074D9;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Style the "Print" button */
+button.print {
+    background-color: #4CAF50;
+}
+
+/* Style the ordered list for attendance */
+ol {
+    list-style-type: decimal;
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Style the "Delete" and "Update" buttons */
+button.delete, button.update {
+    background-color: #FF4136;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Add hover effect to buttons */
+button:hover {
+    opacity: 0.8;
+}
+/* Reset some default styles */
+body, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Style the container */
+.container {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style the heading */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #0074D9;
+}
+
+/* Style the form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style labels */
+label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Style input fields */
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+/* Style buttons */
+button {
+    background-color: #0074D9;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Style the "Print" button */
+button.print {
+    background-color: #4CAF50;
+}
+
+/* Style the ordered list for attendance */
+ol {
+    list-style-type: decimal;
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Style the "Delete" and "Update" buttons */
+button.delete, button.update {
+    background-color: #FF4136;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Add hover effect to buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mark Attendance</h2>
+        <form action="submit.php" method="post">
+            <label for="studentName">Student Name:</label>
+            <input type="text" name="studentName" required>
+            <button type="submit">Mark Attendance</button>
+        </form>
+       
+        <button onclick="printAttendance()">Print</button>
+        <ol id="attendanceList"></ol>
+        <button onclick="deleteAttendance()">Delete All Attendance</button>
+        <button onclick="updateAttendancePrompt()">Update Attendance</button>
+    </div>
+
+    <!-- Include the jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    <script>
+        function generateAndPrintPDF() {
+            const attendanceList = document.getElementById('attendanceList');
+            const listItems = attendanceList.getElementsByTagName('li');
+
+            // Create a new PDF document
+            const doc = new jsPDF();
+
+            // Set initial position for text
+            let yPosition = 10;
+
+            // Loop through the list items and add each one to the PDF document sequentially
+            for (let i = 0; i < listItems.length; i++) {
+                const listItemText = listItems[i].textContent;
+                doc.text(10, yPosition, listItemText);
+                yPosition += 10;
+            }
+
+            // Open the print dialog for the PDF
+            doc.autoPrint();
+            doc.output('dataurlnewwindow');
+        }
+
+        function deleteAttendance() {
+            // JavaScript function to delete all attendance data.
+            if (confirm("Are you sure you want to delete all attendance data?")) {
+                fetch('delete.php')
+                    .then(response => {
+                        if (response.ok) {
+                            alert('All attendance data has been deleted.');
+                            document.getElementById('attendanceList').innerHTML = ''; // Clear the displayed data
+                        } else {
+                            alert('Failed to delete attendance data.');
+                        }
+                    })
+                    .catch(error => console.error('Error deleting attendance data:', error));
+            }
+        }
+
+        function updateAttendancePrompt() {
+            const newName = prompt('Enter the student name you want to update:');
+            if (newName !== null) {
+                const updatedName = prompt('Enter the updated student name:');
+                if (updatedName !== null) {
+                    updateAttendance(newName, updatedName);
+                }
+            }
+        }
+
+        function updateAttendance(oldName, newName) {
+            // JavaScript function to update attendance data based on oldName and newName.
+            const data = { oldName, newName };
+            fetch('update.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Attendance data updated successfully.');
+                        // You can update the displayed list if needed.
+                    } else {
+                        alert('Failed to update attendance data.');
+                    }
+                })
+                .catch(error => console.error('Error updating attendance data:', error));
+        }
+        function printAttendance() {
+            // Fetch and display attendance data from a text file sequentially.
+            fetch('attendance_log.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const attendanceList = document.getElementById('attendanceList');
+                    attendanceList.innerHTML = ''; // Clear existing data
+
+                    const lines = data.split('\n');
+                    lines.forEach((line, index) => {
+                        if (line.trim() !== '') {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${index + 1}. ${line}`;
+                            attendanceList.appendChild(listItem);
+                        }
+                    });
+
+                    window.print();
+                })
+                .catch(error => console.error('Error fetching attendance data:', error));
+        }
+
+    </script>
+</body>
+</html>

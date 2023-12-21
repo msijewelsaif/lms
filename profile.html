@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Page</title>
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
+</head>
+<body>
+    <?php
+    session_start();
+    include('connection.php');
+
+    $id = $_SESSION['id'];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
+
+        $newFirstName = $_POST['new_first_name'];
+        $newLastName = $_POST['new_last_name'];
+
+        // Update the user's name in the database
+        $sql = "UPDATE signup SET firstName = '$newFirstName', lastname = '$newLastName' WHERE id = $id";
+        if ($conn->query($sql) === TRUE) {
+            // If the update was successful, retrieve the updated user data
+            $sql = "SELECT * FROM signup WHERE id = $id";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $firstName = $row['firstName'];
+                $lastName = $row['lastName'];
+                $email = $row['email'];
+                $number = $row['number'];
+            }
+        } else {
+            echo "Error updating name: " . $conn->error;
+        }
+    } else {
+        // Fetch the user data from the database
+        $sql = "SELECT * FROM signup WHERE id = $user_id";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $firstName = $row['fname'];
+            $lastName = $row['lname'];
+            $email = $row['email'];
+            $number = $row['number'];
+        }
+    }
+    ?>
+
+    <div class="profile-container">
+        <h2>Welcome, <?php echo $firstName . " " . $lastName; ?></h2>
+        <p>Email: <?php echo $email; ?></p>
+        <p>Phone Number: <?php echo $number; ?></p>
+        <!-- Add more profile information as needed -->
+
+        <!-- Form to update name -->
+        <form method="POST" action="">
+            <label for="new_first_name">New First Name:</label>
+            <input type="text" id="new_first_name" name="new_first_name" required>
+            
+            <label for="new_last_name">New Last Name:</label>
+            <input type="text" id="new_last_name" name="new_last_name" required>
+            
+            <button type="submit">Update Name</button>
+        </form>
+    </div>
+</body>
+</html>

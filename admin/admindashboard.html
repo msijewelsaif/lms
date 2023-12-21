@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admindashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="addcourse.php">Courses</a></li>
+                <li><a href="#">Attendance</a></li>
+                <li><a href="logout.php">Logout</a></li> <!-- Add a logout page -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-approval">
+            <h2>Course Approval</h2>
+            <!-- Display course approval options and data here -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Instructor</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populate with courses pending approval -->
+                    <tr>
+                        <td>Course 1</td>
+                        <td>Instructor A</td>
+                        <td>
+                            <button class="approve-btn">Approve</button>
+                            <button class="reject-btn">Reject</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Course 2</td>
+                        <td>Instructor B</td>
+                        <td>
+                            <button class="approve-btn">Approve</button>
+                            <button class="reject-btn">Reject</button>
+                        </td>
+                    </tr>
+                    <!-- Add more course entries as needed -->
+                </tbody>
+            </table>
+        </section>
+
+        <section class="attendance-management">
+            <h2>Attendance Management</h2>
+            <!-- Display attendance management options and data here -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Course</th>
+                        <th>Date</th>
+                        <th>Mark Attendance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populate with attendance records -->
+                    <tr>
+                        <td>Student 1</td>
+                        <td>Course 1</td>
+                        <td>2023-10-15</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>Student 2</td>
+                        <td>Course 2</td>
+                        <td>2023-10-15</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                    <!-- Add more attendance records as needed -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <?php echo date("Y"); ?> Your LMS</p>
+    </footer>
+
+    <script src="js/admin_dashboard.js"></script>
+</body>
+</html>
